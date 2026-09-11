@@ -1,4 +1,7 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:task_manager_app/screens/main_nav_screen.dart';
+import 'package:task_manager_app/screens/sign_up_screen.dart';
 import 'package:task_manager_app/screens/splash_screen.dart';
 import 'package:task_manager_app/widgets/screen_bg.dart';
 class LoginScreen extends StatefulWidget {
@@ -9,6 +12,11 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+
+  onTapSignUp(){
+    Navigator.push(context, MaterialPageRoute(builder: (context)=> SignUpScreen()));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +46,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
               const SizedBox(height: 20,),
 
-              FilledButton(onPressed: (){}, child: Icon(Icons.arrow_right_alt_outlined)),
+              FilledButton(onPressed: (){
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> MainNavScreen()));
+              }, child: Icon(Icons.arrow_right_alt_outlined)),
 
               SizedBox(height: 70,),
               Center(
@@ -51,7 +61,8 @@ class _LoginScreenState extends State<LoginScreen> {
                      children: [
                         TextSpan(
                           text: ' Sign up',
-                          style: TextStyle(color: Colors.green,fontWeight: FontWeight.bold)
+                          style: TextStyle(color: Colors.green,fontWeight: FontWeight.bold),
+                          recognizer: TapGestureRecognizer()..onTap  = onTapSignUp
 
                         )
                       ]
