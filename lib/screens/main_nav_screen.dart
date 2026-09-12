@@ -4,6 +4,8 @@ import 'package:task_manager_app/screens/completed_task_screen.dart';
 import 'package:task_manager_app/screens/new_task_screen.dart';
 import 'package:task_manager_app/screens/progress_task_screen.dart';
 
+import '../widgets/tm_app_bar.dart';
+
 class MainNavScreen extends StatefulWidget {
   const MainNavScreen({super.key});
 
@@ -22,33 +24,11 @@ class _MainNavScreenState extends State<MainNavScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.green,
-        title: Row(
-          children: [
-            CircleAvatar(
-              backgroundImage: NetworkImage("https://cdn.pixabay.com/photo/2024/02/24/22/37/ai-generated-8594846_640.png"),
-              radius: 25,
-            ),
-            SizedBox(width: 10,),
-            Column(crossAxisAlignment: .start,
-              children: [
-                Text("MD. Jakir Hossain",style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                  color: Colors.white,
-                ),),
-                Text("jakir.dev1@gmail.com",style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                  color: Colors.white
-                ),),
+      appBar: TMAppBar(),
 
-              ],
-            )
-          ],
-        ),
-      ),
+      body: screens[selectedIndex],
 
-      body: screens[
-        selectedIndex
-      ],
+
 
       bottomNavigationBar: NavigationBar(
           selectedIndex: selectedIndex,
@@ -68,3 +48,4 @@ class _MainNavScreenState extends State<MainNavScreen> {
     );
   }
 }
+

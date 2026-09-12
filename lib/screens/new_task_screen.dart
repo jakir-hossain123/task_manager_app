@@ -7,6 +7,7 @@ import 'package:task_manager_app/service/api_caller.dart';
 import '../utils/urls.dart';
 import '../widgets/task_card.dart';
 import '../widgets/task_card_count.dart';
+import 'add_task_screen.dart';
 class NewTaskScreen extends StatefulWidget {
   const NewTaskScreen({super.key});
 
@@ -99,13 +100,23 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
                 itemCount: taskList.length,
                 itemBuilder: (context , index){
                   return TaskCard(taskModel: taskList[index],
-                    cardColor: Colors.blue, refreshParent: () {  },);
+                    cardColor: Colors.blue, refreshParent: () {
+
+                    getAllTaskCount();
+                    getAllTask('New');
+                    },);
                 }
 
 
             ),
           )
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => AddTaskScreen()));
+          },
+        child: Icon(Icons.add),
       ),
 
     );

@@ -54,7 +54,7 @@ class _CompletedTaskScreenState extends State<CompletedTaskScreen> {
         body: ListView.builder(
             itemCount: taskList.length,
             itemBuilder: (context , index){
-              return TaskCard(taskModel: taskList[index], cardColor: Colors.purple, refreshParent: () {  },);
+              return TaskCard(taskModel: taskList[index], cardColor: Colors.green, refreshParent: () {  },);
             }
 
 

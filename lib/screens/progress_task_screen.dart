@@ -19,7 +19,7 @@ class _ProgressTaskScreenState extends State<ProgressTaskScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    getTask('In Progress');
+    getTask('Progress');
 
   }
   List<TaskModel> taskList =[];

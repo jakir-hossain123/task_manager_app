@@ -18,7 +18,7 @@ class _CancelTaskScreenState extends State<CancelTaskScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    getTask('');
+    getTask('Cancel');
 
   }
   List<TaskModel> taskList =[];
@@ -54,7 +54,7 @@ class _CancelTaskScreenState extends State<CancelTaskScreen> {
         body: ListView.builder(
             itemCount: taskList.length,
             itemBuilder: (context , index){
-              return TaskCard(taskModel: taskList[index], cardColor: Colors.purple, refreshParent: () {  },);
+              return TaskCard(taskModel: taskList[index], cardColor: Colors.red, refreshParent: () {  },);
             }
 
 
