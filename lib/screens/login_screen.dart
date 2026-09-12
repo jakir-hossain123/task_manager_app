@@ -1,9 +1,15 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:task_manager_app/controller/auth_controller.dart';
+import 'package:task_manager_app/models/user_model.dart';
 import 'package:task_manager_app/screens/main_nav_screen.dart';
 import 'package:task_manager_app/screens/sign_up_screen.dart';
 import 'package:task_manager_app/screens/splash_screen.dart';
+import 'package:task_manager_app/service/api_caller.dart';
+import 'package:task_manager_app/utils/urls.dart';
 import 'package:task_manager_app/widgets/screen_bg.dart';
+
+import '../models/api_response.dart';
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -12,9 +18,11 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   onTapSignUp(){
-    Navigator.push(context, MaterialPageRoute(builder: (context)=> SignUpScreen()));
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>SignUpScreen()));
   }
 
   @override
@@ -32,12 +40,14 @@ class _LoginScreenState extends State<LoginScreen> {
               Text('Get started with',style: Theme.of(context).textTheme.titleLarge),
               const SizedBox(height: 25,),
               TextFormField(
+                controller: emailController,
                 decoration: InputDecoration(
                   hintText: "Email"
                 ),
               ),
               const SizedBox(height: 25,),
               TextFormField(
+                controller: passwordController,
                 obscureText: true,
                 decoration: InputDecoration(
                   hintText: "Password"
@@ -46,8 +56,22 @@ class _LoginScreenState extends State<LoginScreen> {
 
               const SizedBox(height: 20,),
 
-              FilledButton(onPressed: (){
-                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> MainNavScreen()));
+              FilledButton(onPressed: () async {
+                final ApiResponse response =  await ApiCaller.postRequest(url:
+                TMUrls.loginUrl,
+                    body: {
+                      "email": emailController.text,
+                      "password": passwordController.text
+                    }
+                );
+                if(response.isSuccess && response.responseData['status'] == 'success'){
+                  UserModel model = UserModel.fromJson(response.responseData['data']);
+                  String token = response.responseData['token'];
+
+                  AuthController.saveUserData(model, token);
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder:
+                      (context)=> MainNavScreen()));
+                }
               }, child: Icon(Icons.arrow_right_alt_outlined)),
 
               SizedBox(height: 70,),

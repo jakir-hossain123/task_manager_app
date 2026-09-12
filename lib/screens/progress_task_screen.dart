@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../models/api_response.dart';
+import '../models/task_model.dart';
+import '../service/api_caller.dart';
+import '../utils/urls.dart';
 import '../widgets/task_card.dart';
 import '../widgets/task_card_count.dart';
 
@@ -12,39 +16,50 @@ class ProgressTaskScreen extends StatefulWidget {
 
 class _ProgressTaskScreenState extends State<ProgressTaskScreen> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getTask('In Progress');
+
+  }
+  List<TaskModel> taskList =[];
+
+  Future<void> getTask(String status)async {
+    final ApiResponse  response=
+    await ApiCaller.getRequest(url: TMUrls.taskListByStatus(status));
+
+    List<TaskModel> tList =[];
+
+
+    if(response.isSuccess){
+      for(Map<String,dynamic> jsonData in response.responseData ['data']){
+        tList.add(TaskModel.fromJson(jsonData));
+      }
+    }
+    else{
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(response.responseData['data'])));
+    }
+    if(mounted){
+      setState(() {
+        taskList = tList;
+      });
+    }
+  }
+
+
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade200 ,
-      body: Column(
-        children: [
-          SizedBox(
-            height: 100,
-            child: ListView.separated(
-              scrollDirection: Axis.horizontal,
-              itemCount: 4,
-              itemBuilder: (context, index) {
-                return SizedBox(
-                    width: 100,
-                    child: TaskCardCount(title: 'prog', count: 25,));
-              }, separatorBuilder: (BuildContext context, int index) {
-              return SizedBox(width: 5,);
-            },
-            ),
-          ),
 
-          Expanded(
-            child: ListView.builder(
-
-                itemCount: 20,
-                itemBuilder: (context , index){
-                  return TaskCard();
-                }
+        body: ListView.builder(
+            itemCount: taskList.length,
+            itemBuilder: (context , index){
+              return TaskCard(taskModel: taskList[index], cardColor: Colors.purple, refreshParent: () {  },);
+            }
 
 
-            ),
-          )
-        ],
-      ),
+        )
     );
   }
 }
