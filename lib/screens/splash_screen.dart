@@ -36,7 +36,7 @@ class _State extends State<SplashScreen> {
         body:ScreenBG(child: Center(child: Image.asset(
             width: 300,
             height: 300,
-            AssetPath.logo)),),
+            AssetPath.notebook)),),
     );
   }
 }

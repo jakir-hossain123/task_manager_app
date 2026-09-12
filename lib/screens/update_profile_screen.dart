@@ -68,7 +68,7 @@ void initState(){
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: TMAppBar(),
+      appBar: TMAppBar(fromUpdateProfile: true,),
 
       body: ScreenBG(
         child: Padding(

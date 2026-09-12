@@ -13,6 +13,11 @@ class TaskManager extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+          textSelectionTheme: const TextSelectionThemeData(
+            cursorColor: Colors.green,
+            selectionColor: Colors.greenAccent,
+            selectionHandleColor: Colors.green,
+          ),
         textTheme: TextTheme(
           titleLarge: TextStyle(
                   fontSize: 28,

@@ -113,6 +113,8 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.green[300],
+          foregroundColor: Colors.white,
           onPressed: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) => AddTaskScreen()));
           },

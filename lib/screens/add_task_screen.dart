@@ -21,6 +21,13 @@ class AddTaskScreen extends StatefulWidget {
 class _AddTaskScreenState extends State<AddTaskScreen> {
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
+  @override
+  void dispose() {
+    titleController.dispose();
+    descriptionController.dispose();
+    super.dispose();
+  }
+
 
   onTapSignUp(){
     Navigator.push(context, MaterialPageRoute(builder: (context)=>SignUpScreen()));
@@ -33,51 +40,53 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
       body: ScreenBG(
         child: Padding(
           padding: const EdgeInsets.all(35.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
 
-            children: [
-              SizedBox(height: 150,),
-              Text('Add new task',style: Theme.of(context).textTheme.titleLarge),
-              const SizedBox(height: 25,),
-              TextFormField(
-                controller: titleController,
-                decoration: InputDecoration(
-                    hintText: "Title"
+              children: [
+                SizedBox(height: 150,),
+                Text('Add new task',style: Theme.of(context).textTheme.titleLarge),
+                const SizedBox(height: 25,),
+                TextFormField(
+                  controller: titleController,
+                  decoration: InputDecoration(
+                      hintText: "Title"
+                  ),
                 ),
-              ),
-              const SizedBox(height: 25,),
-              TextFormField(
-                controller: descriptionController,
-                maxLines: 6,
-                decoration: InputDecoration(
-                    hintText: "Description"
+                const SizedBox(height: 25,),
+                TextFormField(
+                  controller: descriptionController,
+                  maxLines: 6,
+                  decoration: InputDecoration(
+                      hintText: "Description"
+                  ),
                 ),
-              ),
 
-              const SizedBox(height: 20,),
+                const SizedBox(height: 20,),
 
-              FilledButton(onPressed: () async {
-                final ApiResponse response =  await ApiCaller.postRequest(url:
-                TMUrls.addNewTask,
-                    body:{
-                      "title":titleController.text,
-                      "description": descriptionController.text,
-                      "status":"New"
-                    }
-                );
-                if(response.isSuccess ){
+                FilledButton(onPressed: () async {
+                  final ApiResponse response =  await ApiCaller.postRequest(url:
+                  TMUrls.addNewTask,
+                      body:{
+                        "title":titleController.text,
+                        "description": descriptionController.text,
+                        "status":"New"
+                      }
+                  );
+                  if(response.isSuccess ){
 
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder:
-                      (context)=> MainNavScreen()));
-
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder:
+                        (context)=> MainNavScreen()));
 
 
 
-                }
-              }, child: Icon(Icons.arrow_right_alt_outlined)),
 
-            ],
+                  }
+                }, child: Icon(Icons.arrow_right_alt_outlined)),
+
+              ],
+            ),
           ),
         ),
       ),

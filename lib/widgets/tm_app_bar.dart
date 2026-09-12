@@ -5,8 +5,9 @@ import '../screens/update_profile_screen.dart';
 
 
 class TMAppBar extends StatelessWidget implements PreferredSize{
+  final bool fromUpdateProfile;
   const TMAppBar({
-    super.key,
+    super.key,  this.fromUpdateProfile = false,
   });
 
   @override
@@ -32,7 +33,7 @@ class TMAppBar extends StatelessWidget implements PreferredSize{
             ],
           ),
           Spacer(),
-          CircleAvatar(
+          if(!fromUpdateProfile)CircleAvatar(
             backgroundColor: Colors.white,
             child: IconButton(
                 onPressed: () {
