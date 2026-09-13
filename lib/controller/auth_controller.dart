@@ -52,4 +52,16 @@ class AuthController {
     String ? token = sharedPreferences.getString('token');
     return token != null;
   }
+
+
+  static Future deleteUserData() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+
+    await sharedPreferences.clear();
+
+  }
+
+
+
+
 }

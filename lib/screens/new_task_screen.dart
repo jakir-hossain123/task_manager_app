@@ -19,8 +19,11 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
   @override
   void initState(){
     super.initState();
-    getAllTaskCount();
-    getAllTask('New');
+   _loadData();
+  }
+  Future<void> _loadData() async {
+    await getAllTaskCount();
+    await getAllTask('New');
   }
 
   List<TaskStatusCountModel> taskCountByStatus =[];
@@ -61,7 +64,8 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
       }
     }
     else{
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(response.responseData['data'])));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(response.responseData['data'])));
     }
     setState(() {
       taskCountByStatus = taskCount;
@@ -73,7 +77,6 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade200 ,
       body: Column(
 
         children: [
@@ -113,6 +116,8 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
+        shape: CircleBorder(),
+        mini: true,
         backgroundColor: Colors.green[300],
           foregroundColor: Colors.white,
           onPressed: () {

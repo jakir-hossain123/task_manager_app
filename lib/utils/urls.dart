@@ -8,4 +8,10 @@ class TMUrls{
   static String updateTaskStatusUrl (String ID, String status)=> '$baseUrl/updateTaskStatus/$ID/$status';
   static String addNewTask = '$baseUrl/createTask';
   static String profileUpDate = '$baseUrl/ProfileUpdate';
+
+  static String recoverVerifyEmail(String email) => '$baseUrl/RecoverVerifyEmail/$email';
+
+  static String recoverVerifyOtp(String email, String otp) => '$baseUrl/RecoverVerifyOtp/$email/$otp';
+
+  static String recoverResetPassword = '$baseUrl/RecoverResetPassword';
 }

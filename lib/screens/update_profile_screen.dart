@@ -80,7 +80,7 @@ void initState(){
                 crossAxisAlignment: CrossAxisAlignment.start,
 
                 children: [
-                  SizedBox(height: 100,),
+                  SizedBox(height: 40,),
                   Text('Update Profile',style: Theme.of(context).textTheme.titleLarge),
                   const SizedBox(height: 25,),
                   TextFormField(
@@ -163,7 +163,31 @@ void initState(){
                     upDateProfile();
 
                   }, child: Icon(Icons.arrow_right_alt_outlined)),
+                  const SizedBox(height: 10,),
 
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: ElevatedButton.icon(
+                      onPressed: () {
+                        AuthController.deleteUserData();
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder:
+                            (context)=> LoginScreen()));
+                      },
+                      icon: const Icon(Icons.logout_outlined, size: 18, color: Colors.white),
+                      label: const Text(
+                        'Logout',
+                        style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Colors.white),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.redAccent,
+                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        elevation: 2,
+                      ),
+                    ),
+                  )
 
                 ],
               ),

@@ -13,8 +13,8 @@ class TMAppBar extends StatelessWidget implements PreferredSize{
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.green,
-      title: Row(
+      backgroundColor: Colors.green[400],
+      title: Row(crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           CircleAvatar(
             backgroundImage: NetworkImage("https://cdn.pixabay.com/photo/2024/02/24/22/37/ai-generated-8594846_640.png"),
@@ -33,15 +33,16 @@ class TMAppBar extends StatelessWidget implements PreferredSize{
             ],
           ),
           Spacer(),
-          if(!fromUpdateProfile)CircleAvatar(
-            backgroundColor: Colors.white,
-            child: IconButton(
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>UpdateProfileScreen()));
-                },
-                icon: Icon(Icons.edit,color: Colors.black,size: 20,)
-            ),
-          )
+          if(!fromUpdateProfile)
+             InkWell(
+               onTap: (){
+                 Navigator.push(context, MaterialPageRoute(builder: (context)=>UpdateProfileScreen()));
+
+               },
+               child: Icon(Icons.settings,color: Colors.black,size: 30,),
+             ),
+
+
         ],
       ),
     );

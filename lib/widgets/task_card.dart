@@ -100,12 +100,12 @@ class _TaskCardState extends State<TaskCard> {
           ),
           Card(
             child: ListTile(
-              title: Text("Cancel"),
+              title: Text("Cancelled"),
               onTap: (){
-                changeStatus('Cancel');
+                changeStatus('Cancelled');
                 Navigator.pop(context);
               },
-              trailing: widget.taskModel.status == 'Cancel' ? Icon(Icons.check, color: Colors.red) : null,
+              trailing: widget.taskModel.status == 'Cancelled' ? Icon(Icons.check, color: Colors.red) : null,
             ),
           ),
         ],
@@ -117,6 +117,7 @@ class _TaskCardState extends State<TaskCard> {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: Colors.white,
       child: ListTile(
         title: Text(widget.taskModel.title.toString(),style: Theme.of(context).textTheme.titleLarge!.copyWith(
           fontSize: 18,
@@ -129,7 +130,6 @@ class _TaskCardState extends State<TaskCard> {
             Row(
               children: [
                 Chip(
-
                   label: Text(widget.taskModel.status.toString(),style: TextStyle(color: Colors.white),),
                   backgroundColor: widget.cardColor,
                 ),

@@ -35,6 +35,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
           (context)=> LoginScreen()));
     }
   }
+  void onTapSignIn (){
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> LoginScreen()));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -133,7 +137,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                   }, child: Icon(Icons.arrow_right_alt_outlined)),
 
-                  SizedBox(height: 70,),
+                  SizedBox(height: 30,),
                   Center(
                     child: Column(
                       children: [
@@ -148,7 +152,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   TextStyle(color: Colors.green,
                                       fontWeight: FontWeight.bold),
                                 recognizer:
-                                TapGestureRecognizer()..onTap = onTapSignUp
+                                TapGestureRecognizer()..onTap = onTapSignIn
                               )
                             ]
 

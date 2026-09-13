@@ -10,6 +10,7 @@ import 'package:task_manager_app/utils/urls.dart';
 import 'package:task_manager_app/widgets/screen_bg.dart';
 
 import '../models/api_response.dart';
+import 'forget_password_screen.dart';
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -75,11 +76,21 @@ class _LoginScreenState extends State<LoginScreen> {
                   }
                 }, child: Icon(Icons.arrow_right_alt_outlined)),
 
-                SizedBox(height: 70,),
+                SizedBox(height: 30,),
                 Center(
                   child: Column(
                     children: [
-                      TextButton(onPressed: () {}, child: Text("Forgot password..?",style: TextStyle(color: Colors.grey),)),
+                      TextButton(
+                          onPressed: () {
+                            Navigator.push(context,
+                            MaterialPageRoute(builder: (context)=>ForgetPasswordScreen()
+                            ),
+                            );
+                          }, child: Text("Forgot password..?",
+                        style: TextStyle(color: Colors.grey
+                        ),
+                      ),
+                      ),
                       RichText(text: TextSpan(
                         text: "Don't have an account ?",
                         style: TextStyle(color: Colors.black,fontWeight: FontWeight.w500),

@@ -9,8 +9,9 @@ class TaskCardCount extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: Colors.white,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15.0,vertical: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 9.0,vertical: 8),
         child: Column(
           children: [
             Text(count.toString(), style: Theme.of(context).textTheme.titleLarge,),

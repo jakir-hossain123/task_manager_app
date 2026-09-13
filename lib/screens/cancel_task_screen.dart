@@ -18,7 +18,7 @@ class _CancelTaskScreenState extends State<CancelTaskScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    getTask('Cancel');
+    getTask('Cancelled');
 
   }
   List<TaskModel> taskList =[];

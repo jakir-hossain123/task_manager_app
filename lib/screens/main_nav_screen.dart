@@ -30,20 +30,32 @@ class _MainNavScreenState extends State<MainNavScreen> {
 
 
 
-      bottomNavigationBar: NavigationBar(
-          selectedIndex: selectedIndex,
-          onDestinationSelected: (int index){
-            selectedIndex = index;
-            setState(() {
-            });
-          },
-          destinations: [
-        NavigationDestination(icon: Icon(Icons.task), label: 'New'),
-        NavigationDestination(icon: Icon(Icons.refresh), label: 'Progress'),
-        NavigationDestination(icon: Icon(Icons.task_alt_outlined), label: 'Completed'),
-        NavigationDestination(icon: Icon(Icons.cancel_outlined), label: 'Cancel'),
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          border: Border(
+            top: BorderSide(
+              color: Colors.black.withAlpha(8),
+              width: 1,
+            ),
+          ),
+        ),
+        child: NavigationBar(
+          backgroundColor: Colors.white,
+            indicatorColor: Colors.green[300],
+            selectedIndex: selectedIndex,
+            onDestinationSelected: (int index){
+              selectedIndex = index;
+              setState(() {
+              });
+            },
+            destinations: [
+          NavigationDestination(icon: Icon(Icons.task,color: Colors.black,), label: 'New'),
+          NavigationDestination(icon: Icon(Icons.refresh,color: Colors.black,), label: 'Progress'),
+          NavigationDestination(icon: Icon(Icons.task_alt_outlined,color: Colors.black,), label: 'Completed'),
+          NavigationDestination(icon: Icon(Icons.cancel_outlined,color: Colors.black,), label: 'Cancelled'),
 
-      ]
+        ]
+        ),
       ),
     );
   }

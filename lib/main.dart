@@ -13,6 +13,8 @@ class TaskManager extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+          scaffoldBackgroundColor: Colors.grey[200],
+
           textSelectionTheme: const TextSelectionThemeData(
             cursorColor: Colors.green,
             selectionColor: Colors.greenAccent,
